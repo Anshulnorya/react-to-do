@@ -2,11 +2,11 @@
 
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../App';
-import { Link } from 'react-router-dom';
 import { fetchTodos , deleteTodo,updatetodo} from '../api';
 import './ToDoList.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import EditTodoForm from './EditTodoForm';
 
 const TodoList = () => {
   const { token } = useContext(AuthContext);
@@ -14,6 +14,7 @@ const TodoList = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [deletingTodoId, setDeletingTodoId] = useState(null);
+  const [editingTodo, setEditingTodo] = useState(null);
 
   const handleCheckboxChange = (todoId) => {
     // Update the state to reflect the change in status
@@ -85,6 +86,33 @@ const TodoList = () => {
     setShowModal(false);
     setDeletingTodoId(null);
   };
+  const handleEditIconClick = (todo) => {
+    // Open a modal or a form to edit the todo
+    // You can use a state variable to store the editing todo
+    // and conditionally render the modal/form based on the state
+    console.log('Editing todo:', todo);
+    setEditingTodo(todo);
+  };
+  const handleEditSubmit = async (updatedTodo) => {
+    // Update the todo in the state
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) => (todo._id === updatedTodo._id ? updatedTodo : todo))
+    );
+  
+    // Make an API call to update the todo on the server
+    try {
+      await updatetodo(token, updatedTodo);
+      console.log(`Todo with ID ${updatedTodo._id} updated successfully.`);
+    } catch (error) {
+      console.error(
+        `Failed to update todo with ID ${updatedTodo._id}. Error: ${error.message}`
+      );
+    }
+  
+    // Clear the editingTodo state
+    setEditingTodo(null);
+  };
+  
   return (
     <div className="todo-container">
       <h2>Todo List</h2>
@@ -118,6 +146,11 @@ const TodoList = () => {
         className="delete-icon"
         onClick={() => handleDeleteIconClick(todo._id)}
       />
+      <FontAwesomeIcon
+        icon={faEdit}
+        className="edit-icon"
+        onClick={() => handleEditIconClick(todo)}
+      />
             </div>
             <div className="todo-details">
               <div className="todo-text">
@@ -134,11 +167,18 @@ const TodoList = () => {
           </div>
         ))}
       </div>
-
+      {editingTodo && (
+  <EditTodoForm
+    todo={editingTodo}
+    onSubmit={handleEditSubmit}
+    onCancel={() => setEditingTodo(null)}
+  />
+)}
 
       {showModal && (
         <div className={`modal ${showModal ? 'visible' : ''}`}>
           <div className="modal-content">
+          <span className="close-button" onClick={handleCancelDelete}>&times;</span>
             <p>Are you sure you want to delete this todo?</p>
             <div className="modal-buttons">
               <button className="cancel" onClick={handleCancelDelete}>

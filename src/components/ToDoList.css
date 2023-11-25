@@ -164,15 +164,23 @@ input:checked + .slider:before {
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
+
 .modal-buttons {
-  margin-top: 1rem;
+  margin-top: 1.5rem; /* Adjusted margin for better spacing */
+  text-align: center; /* Center the buttons */
 }
 
 .modal-buttons button {
   margin: 0 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -186,4 +194,20 @@ input:checked + .slider:before {
 .modal-buttons button.confirm {
   background-color: #e74c3c;
   color: #fff;
+}
+
+.modal.visible .modal-content {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #777;
+}
+.close-button:hover {
+  color: #333;
 }
