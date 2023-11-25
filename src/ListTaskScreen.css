@@ -1,0 +1,74 @@
+/* ListTaskScreen.css */
+
+.tdTaskMain {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.tdHeading {
+  text-align: center;
+  color: #333;
+}
+
+.tdAddTask {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tdAddTask input {
+  flex: 1;
+  margin-right: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.tdAddTask button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.tdAddTask button:hover {
+  background-color: #45a049;
+}
+
+.tdTaskList {
+  margin-top: 20px;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.task input {
+  margin-right: 10px;
+}
+
+.task h3 {
+  margin: 0;
+  color: #333;
+}
+
+.task p {
+  margin: 0;
+  color: #666;
+}
+
+.task:hover {
+  background-color: #f9f9f9;
+}

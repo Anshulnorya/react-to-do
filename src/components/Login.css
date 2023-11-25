@@ -1,88 +1,87 @@
 /* Login.css */
 
 body {
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   background-color: #f4f4f4;
   margin: 0;
   padding: 0;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center; */
+  /* justify-content: center; */
   /* height: 100vh; */
-  box-sizing: border-box;
 }
 
-.container {
+.tdMainContainer {
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  width: 400px;
   background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  width: 300px;
+  padding: 40px;
+  text-align: center;
 }
 
 h2 {
-  text-align: center;
-  font-size: 40px;
+  margin-bottom: 20px;
+  font-size: 32px;
+  color: #333;
+}
+
+.tdParagraph {
+  color: #666;
+  margin-bottom: 30px;
 }
 
 .tdForm {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* height: 300px; */
-  /* width: 500px; */
-  background-color: white;
-  border: 1px solid green;
-  ;
-}
-.tdMainContainer{
-  border-radius: 15px;
-  box-shadow: 5px 3px 3px 5px #888888;
-  border: 1px solid red;
-  height: 500px;
-  width: 600px;
-  background-color: #fff;
-  
-}
-.tdParagraph{
-  text-align: center;
-  color: #888888
+  gap: 15px;
 }
 
-
-input{
+input {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px; /* Adjusted padding for uniform size */
+  width: 100%;
+  box-sizing: border-box; /* Ensure padding is included in the width */
   border-radius: 20px;
-  border: 1px solid grey;
-  padding: 10px;
-  width: 200px;
 }
 
-
-.error-message {
-  color: red;
-  margin-bottom: 16px;
-}
-
-/* ///////////////////////////// Myt Css*/
-
-
-.tdUsernameDiv{
-  margin: 10px;
-}
-.tdPasswordDiv{
-  margin: 10px;
-}
-button{
-  padding: 5px;
+.tdLoginButton {
+  padding: 12px;
   border: none;
-  background-color: black;
-  color: white;
+  background-color: #000000;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
   border-radius: 20px;
-  width: 80px;
 }
-.tdButtonDiv{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
+button:hover {
+  background-color: #555;
+}
+
+
+
+.tdPasswordDiv {
+  position: relative;
+}
+
+
+.eye-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: grey;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .tdMainContainer {
+    width: 90%;
+  }
 }
