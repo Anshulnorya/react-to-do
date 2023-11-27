@@ -1,16 +1,14 @@
-/* Login.css */
 
-body {
-  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+.tdMainContainerBody{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   background-color: #f4f4f4;
   margin: 0;
   padding: 0;
   display: flex;
-  align-items: center; */
-  /* justify-content: center; */
-  /* height: 100vh; */
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
-
 .tdMainContainer {
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -29,7 +27,8 @@ h2 {
 
 .tdParagraph {
   color: #666;
-  margin-bottom: 30px;
+  padding: 1rem;
+  cursor: pointer;
 }
 
 .tdForm {
@@ -41,9 +40,9 @@ h2 {
 input {
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 12px; /* Adjusted padding for uniform size */
+  padding: 12px; 
   width: 100%;
-  box-sizing: border-box; /* Ensure padding is included in the width */
+  box-sizing: border-box; 
   border-radius: 20px;
 }
 

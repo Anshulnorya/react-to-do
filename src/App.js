@@ -3,7 +3,7 @@ import React, { useState ,createContext} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './components/Login';
 import TodoList from './components/TodoList';
-// import TodoDetail from './components/TodoDetail';
+
 // import TodoUpdate from './components/TodoUpdate';
 // import TodoDelete from './components/TodoDelete';
 import './App.css'
@@ -18,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/todos" element={<TodoList  />} />
-        {/* <Route path="/todo/:id" element={<TodoDetail />} /> */}
+      
         {/* <Route path="/todo/:id/update" element={<TodoUpdate />} /> */}
         {/* <Route path="/todo/:id/delete" element={<TodoDelete />} /> */}
       </Routes>

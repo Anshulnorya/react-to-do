@@ -1,10 +1,10 @@
-// EditTodoForm.js
 import React, { useState } from 'react';
+import "./EditTodoForm.css"
 
 const EditTodoForm = ({ todo, onSubmit, onCancel }) => {
   const [updatedTitle, setUpdatedTitle] = useState(todo.name);
   const [updatedDescription, setUpdatedDescription] = useState(todo.description);
-
+  const [loading, setLoading] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
     const updatedTodo = {
@@ -13,10 +13,12 @@ const EditTodoForm = ({ todo, onSubmit, onCancel }) => {
       description: updatedDescription,
     };
     onSubmit(updatedTodo);
+    setLoading(false);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div className='editform'>
+      <form onSubmit={handleSubmit} className='formContent' >
       <label>
         Title:
         <input
@@ -33,11 +35,12 @@ const EditTodoForm = ({ todo, onSubmit, onCancel }) => {
           onChange={(e) => setUpdatedDescription(e.target.value)}
         />
       </label>
-      <button type="submit">Update Todo</button>
-      <button type="button" onClick={onCancel}>
+      <button type="submit" className='editSubmit'>{loading ? 'Updating...' : 'Update Todo'}</button>
+      <button type="button" className='editCancel' onClick={onCancel}>
         Cancel
       </button>
     </form>
+    </div>
   );
 };
 

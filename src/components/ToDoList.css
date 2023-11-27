@@ -13,6 +13,7 @@ body {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   margin: 2rem;
   transition: box-shadow 0.3s ease-in-out;
+  position: relative;
 }
 
 .todo-container:hover {
@@ -31,6 +32,7 @@ h2 {
 
 .search-bar {
   margin-bottom: 1.5rem;
+  position: relative;
 }
 
 .search-bar input {
@@ -49,13 +51,9 @@ h2 {
 
 .todo-item {
   padding: 1.5rem;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
   background-color: #fff;
 }
 
@@ -64,22 +62,27 @@ h2 {
 }
 
 .todo-header {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
 }
-.delete-icon {
+
+.delete-icon,
+.edit-icon {
   cursor: pointer;
-  margin-left: 1rem;
-  color: #e74c3c; /* Red color for delete icon */
   font-size: 20px;
   transition: color 0.3s ease-in-out;
 }
+
 .delete-icon:hover {
-  color: #c0392b; /* Darker red color on hover */
+  color: #e74c3c;
 }
+
+.edit-icon:hover {
+  color: #3498db;
+}
+
 .switch {
   position: relative;
   display: inline-block;
@@ -134,15 +137,26 @@ input:checked + .slider:before {
   flex: 1;
 }
 
-.todo-text h3,
+.todo-text h3{
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 0.3rem;
+}
 .todo-text p {
+  color: #555;
   margin-bottom: 0.5rem;
 }
 
 .meta {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: #777;
+  font-style: italic;
 }
+.todo-status {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+/* Additional Styles for Modal */
 .modal {
   display: none;
   position: fixed;
@@ -154,28 +168,23 @@ input:checked + .slider:before {
   justify-content: center;
   align-items: center;
 }
+
 .modal.visible {
-  display: block; /* or display: flex; */
+  display: flex;
 }
 
 .modal-content {
   background-color: #fff;
   padding: 2rem;
-  border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   text-align: center;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.8);
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  max-width: 400px;
+  width: 100%;
 }
 
-
 .modal-buttons {
-  margin-top: 1.5rem; /* Adjusted margin for better spacing */
-  text-align: center; /* Center the buttons */
+  margin-top: 1.5rem;
+  text-align: center;
 }
 
 .modal-buttons button {
@@ -197,9 +206,18 @@ input:checked + .slider:before {
 }
 
 .modal.visible .modal-content {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+  animation: fadeIn 0.3s ease-in-out;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .close-button {
   position: absolute;
   top: 1rem;
@@ -208,6 +226,88 @@ input:checked + .slider:before {
   font-size: 1.5rem;
   color: #777;
 }
+
 .close-button:hover {
   color: #333;
 }
+
+/* Additional Styles for Add Todo Card */
+.add-todo-card {
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.add-todo-card input,
+.add-todo-card textarea,
+.add-todo-card button {
+  margin-bottom: 8px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.add-todo-card button {
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+.add-todo-card button:hover {
+  background-color: #45a049;
+}
+
+
+.action-menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+
+.filter-button {
+  cursor: pointer;
+  padding: 18px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 1;
+  width: 100px; 
+}
+
+.menu-option {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.menu-option:hover {
+  background-color: #f0f0f0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .todo-list {
+    grid-template-columns: 1fr;
+  }
+}
+

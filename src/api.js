@@ -11,9 +11,9 @@ export const login = async (credentials) => {
     const response = await axios.post(`${apiUrl}/auth/login`, credentials);
     
     if (response.status === 200) {
-      return response.data; // Assuming the response contains user data or a token
+      return response.data; 
     } else {
-      throw new Error('Invalid credentials'); // Throw an error for non-200 status codes
+      throw new Error('Invalid credentials'); 
     }
   } catch (error) {
     throw error;
@@ -31,7 +31,7 @@ export const fetchTodos = async (accessToken) => {
         'Content-Type': 'application/json',
       },
     });
-
+console.log(accessToken);
     if (response.status === 200) {
       return response.data;
     } else {
@@ -48,8 +48,8 @@ export const deleteTodo = async (accessToken, todoId) => {
   // const apiUrl = 'https://todos-api-aeaf.onrender.com/api/v1/todo'; // Correct API endpoint
 
   try {
-    const response = await fetch(`${apiUrl}/todo/delete?id=${todoId}`, {
-      method: 'DELETE',
+    const response = await axios.delete(`${apiUrl}/todo/delete?id=${todoId}`, {
+      
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${accessToken}`,
@@ -66,7 +66,7 @@ export const deleteTodo = async (accessToken, todoId) => {
   }
 };
 
-// Example usage
+
 // const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDNmYTAxZTZlMmFmODAwMzQ2Y2VlZjEiLCJuYW1lIjoic2hyZXlhIiwiaWF0IjoxNzAwODA5NDI1LCJleHAiOjE3MDM0MDE0MjV9.GcdpOnWpUyxb2ICfNfiBp-bGcuIxc-3OT6MZMbtlSjU';
 // const todoIdToDelete = '6560e7f35f5f0c00332e2119';
 export const updatetodo = async (accessToken, updatedTodo) => {
@@ -90,10 +90,47 @@ export const updatetodo = async (accessToken, updatedTodo) => {
   console.error('Error:', error.message);
   if (error.response) {
   console.error('Error response:');
-  console.error(error.response.data);
-  console.error(error.response.status);
-  console.error(error.response.headers);
   }
   }
  };
- 
+
+// Register
+export const register = async (userData) => {
+  try {
+    
+    const response = await axios.post(`${apiUrl}/auth/register`, userData);
+    console.log("Server Response:", response.data);
+
+    if (response.status === 201) {
+      return response.data; 
+    } else {
+      console.log(response);
+      throw new Error(`Registration failed: ${response.data.message || 'Unknown error'}`);
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+export const createTodo = async (accessToken, newTodo) => {
+  try {
+    const response = await axios.post(
+      `${apiUrl}/todo/create`,
+      newTodo,
+      {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    if (response.status === 200 || response.status === 201) {
+      console.log('Todo created successfully:', response.data);
+      return response.data;
+    } else {
+      throw new Error(`Failed to create todo. Status: ${response.status}`);
+    }
+  } catch (error) {
+    throw error;
+  }
+};
